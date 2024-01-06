@@ -3,12 +3,17 @@
 #n = int(input())
 #print(arr[n - 1])
 
-string = input()
+#string = input()
+#n = int(input())
+
+#wordList = []
+#for word in string:
+#    wordList.append(word)
+#print(wordList[n - 1])
+
+arr = input()
 n = int(input())
 
-wordList = []
-for word in string:
-    wordList.append(word)
-print(wordList[n - 1])
+print(arr[n - 1])
 
 

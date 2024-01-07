@@ -1,11 +1,10 @@
-import sys
 # 나의 풀이 -> 맞춤
 #문자열 끼리 비교시 슬라이싱!
 n = int(input())
 cnt = 0
 
 for _ in range(n):
-    string = sys.stdin.readline()
+    string = input()
     numCheck = 0
     for i in range(len(string) - 1):
         if string[i] != string[i + 1]:

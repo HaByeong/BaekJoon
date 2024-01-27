@@ -6,28 +6,21 @@ def eratosprime(T):
     primeList = [True] * (T + 1)
     primeList[0] = primeList[1] = False
 
-    for i in range(2, T + 1):
+    for i in range(2, int(T ** 0.5) + 1):
         if primeList[i]:
             for j in range(i * 2, T + 1, i):
                 primeList[j] = False
+    return primeList
 
-    prime = [i for i in range(T + 1) if primeList[i]]
-    return prime
-
+primeList = eratosprime(1000000)
 T = int(input())
 
 for _ in range(T):
-    N = int(input())
-    primeList = eratosprime(N)
+    n = int(input())
     cnt = 0
-    n = len(primeList)
-    for i in range(n - 1):
-        if N // primeList[i] == 2 and N % primeList[i] == 0:
+    # 아래 방식에 대해 잘 고민해보자 (범위랑 두 개의 소수 합이라면 하나를 뺏을때도 소수가 되야하는 것)
+    for i in range(2, n // 2 + 1):
+        if primeList[i] and primeList[n - i]:
             cnt += 1
-        for j in range(i + 1, n):
-            sumVal = primeList[i] + primeList[j]
-            if sumVal == N:
-                cnt += 1
-    if N // primeList[n - 1] == 2 and N % primeList[n - 1] == 0:
-        cnt += 1
     print(cnt)
+

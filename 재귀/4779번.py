@@ -2,17 +2,20 @@ import sys
 input = lambda : sys.stdin.readline().rstrip()
 
 #나의 풀이
-def canto_set(x):
-    num = len(x)
-    if num < 3:
-        return x
-    n = int(num / 3)
-    x[n : 2 * n] = [" "] * n
-    return canto_set(x[:n]), canto_set(x[2 * n :])
+def canto_set(cantoList, x):
+    if x == 0:
+        return cantoList
+    num = 3 ** (x - 1)
+    cantoList[num : num * 2] = [" "] * num
+    cantoList[:num] = canto_set(cantoList[:num], x - 1)
+    cantoList[num * 2:] = canto_set(cantoList[num * 2:], x - 1)
+    return cantoList
 
-
-N = int(input())
-L = ["-"] * 3 ** N
-
-canto_set(L)
-print(''.join(L))
+while True:
+    N = input()
+    if N == '':
+        break
+    N = int(N)
+    cantoList = ["-"] * (3 ** N)
+    canto_set(cantoList, N)
+    print("".join(cantoList))

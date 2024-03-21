@@ -1,24 +1,26 @@
+import sys
+input = lambda : sys.stdin.readline().rstrip()
 from collections import deque
 
 #나의 풀이
-MAX = 100000
-N,K = map(int,input().split())
-dist = [0] * (MAX+1)
+Max = 100000
+N, K = map(int, input().split())
+dist = [0] * (Max + 1)
 
-def DFS():
-    q = deque()
-    q.append(N)
-    while q:
-        x = q.popleft()
-        if x == K:
-            print(dist[x])
-            break
+q = deque()
+q.append(N)
 
-        for j in (x-1,x+1,x*2):
-            if(0<=j<=MAX and not dist[j]):
-                dist[j] = dist[x]+1
-                q.append(j)
-
+while q:
+    x = q.popleft()
+    if x == K:
+        print(dist[K])
+        break
+    for i in (x - 1, x + 1, x * 2):
+        if (0 <= i <= Max) and dist[i] == 0:
+            q.append(i)
+            dist[i] = dist[x] + 1
 
 
-DFS()
+
+
+
